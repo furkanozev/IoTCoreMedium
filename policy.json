@@ -1,0 +1,30 @@
+{
+  "Statement": [
+    {
+      "Action": "iot:Connect",
+      "Condition": {
+        "Bool": {
+          "iot:Connection.Thing.IsAttached": "true"
+        }
+      },
+      "Effect": "Allow",
+      "Resource": "<arn>:client/<clientId>"
+    },
+    {
+      "Action": "iot:Receive",
+      "Effect": "Allow",
+      "Resource": "<arn>:topic/mqtt/device/<deviceId>/receive"
+    },
+    {
+      "Action": "iot:Publish",
+      "Effect": "Allow",
+      "Resource": "<arn>:topic/mqtt/device/$<deviceId>/send"
+    },
+    {
+      "Action": "iot:Subscribe",
+      "Effect": "Allow",
+      "Resource": "<arn>:topicfilter/$share/group/mqtt/device/<deviceId>/receive"
+    }
+  ],
+  "Version": "2012-10-17"
+}
